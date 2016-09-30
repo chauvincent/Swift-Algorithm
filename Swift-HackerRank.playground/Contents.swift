@@ -68,7 +68,7 @@ leftRotate(arr: arr, d: 2)
  
  
     My Thoughts:
-    First... there would be three cases
+    (1) First... there would be three cases
     
     1. string a and b are same length
     2. a is longer
@@ -76,12 +76,53 @@ leftRotate(arr: arr, d: 2)
  
     arr[25] ascii for alphabet as key and count as value
     arr2[25] ascii for second string
- 
+    store into two buckets and interate through.. if different, different count += difference in values for key
  
  
 */
+extension Character
+{
+    func unicodeScalarCodePoint() -> UInt32
+    {
+        let characterString = String(self)
+        let scalars = characterString.unicodeScalars
+        return scalars[scalars.startIndex].value
+    }
+}
 
+func makeAnagram(str1: String, str2: String) -> Int
+{
+    var letterBucket = Array(repeating: 0, count: 25)
+    var letterBucket2 = Array(repeating: 0, count: 25)
+    var amountNeeded = 0;
+    
+    for c in str1.lowercased().characters
+    {
+        let ascii = Int(c.unicodeScalarCodePoint()) - 97
+        letterBucket[ascii] += 1
+    } // O(S1)
+    
+    for c in str2.lowercased().characters
+    {
+        let ascii = Int(c.unicodeScalarCodePoint()) - 97
+        letterBucket2[ascii] += 1
+    } // O(S1 + S2)
 
+    for (index, element) in letterBucket.enumerated()
+    {
+        let difference = abs(element - letterBucket2[index])
+        
+        if(difference != 0)
+        {
+            amountNeeded += difference
+        }
+        
+    } // O(S1 + S2 + 26)
+    
+    return amountNeeded  // O(length of longest string)
+}
+
+let amount = makeAnagram(str1: "cde", str2: "abc")
 
 
 
