@@ -82,11 +82,11 @@ leftRotate(arr: arr, d: 2)
 */
 extension Character
 {
-    func unicodeScalarCodePoint() -> UInt32
+    func unicodeScalarCodePoint() -> Int
     {
         let characterString = String(self)
         let scalars = characterString.unicodeScalars
-        return scalars[scalars.startIndex].value
+        return Int(scalars[scalars.startIndex].value)
     }
 }
 
@@ -98,15 +98,15 @@ func makeAnagram(str1: String, str2: String) -> Int
     
     for c in str1.lowercased().characters
     {
-        let ascii = Int(c.unicodeScalarCodePoint()) - 97
+        let ascii = c.unicodeScalarCodePoint() - 97
         letterBucket[ascii] += 1
-    } // O(S1)
+    }
     
     for c in str2.lowercased().characters
     {
-        let ascii = Int(c.unicodeScalarCodePoint()) - 97
+        let ascii = c.unicodeScalarCodePoint() - 97
         letterBucket2[ascii] += 1
-    } // O(S1 + S2)
+    }
 
     for (index, element) in letterBucket.enumerated()
     {
@@ -117,9 +117,9 @@ func makeAnagram(str1: String, str2: String) -> Int
             amountNeeded += difference
         }
         
-    } // O(S1 + S2 + 26)
+    }
     
-    return amountNeeded  // O(length of longest string)
+    return amountNeeded  // Time Complexity : O(length of longest string) ~ O(N), Space Complexity : O(S1 + S2 + 42) ~ O(N)
 }
 
 let amount = makeAnagram(str1: "cde", str2: "abc")
