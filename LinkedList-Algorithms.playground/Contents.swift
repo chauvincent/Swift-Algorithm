@@ -4,8 +4,18 @@ import UIKit
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-                            Linked List Class
- 
+                            LinkedList Class
+ TODO:
+    append
+    print
+    insert at index
+    removeall
+    remove at index
+    remove last
+    remove given a node
+    reverse linked list
+    detect cycle
+    + .. more to come
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 public class Node<T>
@@ -42,8 +52,11 @@ public class LinkedList<T>
         {
             node = node!.next
         }
+        
         return node
     }
+    
+    
     
 }
 
