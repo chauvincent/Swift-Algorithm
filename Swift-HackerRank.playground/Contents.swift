@@ -143,8 +143,64 @@ let amount = makeAnagram(str1: "cde", str2: "abc")
                         Hash Tables: Ransom Note
  
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/*
+ 
+    Given the words in the magazine and the words in the ransom note,
+    print Yes if he can replicate his ransom note exactly using whole words from the magazine; otherwise, print No.
+ 
+    Input:
+ 
+    The first line contains two space-separated integers describing the respective values of  (the number of words in the magazine) and  (the number of words in the ransom note).
+    The second line contains  space-separated strings denoting the words present in the magazine.
+    The third line contains  space-separated strings denoting the words present in the ransom note.
+ 
+    1 <= m,n <= 30000
+    1 <= length of anyword <= 5
+    words are all case sensitive
+ 
+    Input:                              Output:
+    6 4                                 YES
+    give me one grand today night (magazine words)
+    give one grand today   (ransom notes magazine)
+ 
+ 
+    My Thoughts:
+    Store magazine words into a hashtable
+    hash lookup for ransomnote words
+ 
+*/
+/*
+func isGoodRansomNote(m: Int, n: Int, magazineWords: String, randsomNotes: String) -> Bool
+{
+    let magazineArr = magazineWords.components(separatedBy: " ");
+    let randsomArr = randsomNotes.components(separatedBy: " ");
+    
+    var wordDict: [String:Int] = [:]
+    
+    for word in magazineArr
+    {
+        wordDict[word] = 1
+    }
+    
+    for word in randsomArr
+    {
+        if let val = wordDict[word]
+        {
+            // valid word
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    return true; // Time: O(M + N) Space: O(M + N)
+}
 
+let m = 6
+let n = 4
+let magWords = "give me one grand today night"
+let randWords = "give one grand today"
 
-
-
-
+isGoodRansomNote(m: m, n: n, magazineWords: magWords, randsomNotes: randWords)
+*/
