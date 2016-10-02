@@ -2,6 +2,11 @@
 
 import UIKit
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+                            Arrays: Left Rotation
+ 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 /*
     Arrays: Left Rotation
     [1,2,3,4,5] -> [3,4,5,1,2] if N is 2
@@ -55,7 +60,13 @@ leftRotate(arr: arr, d: 2)
 
 */
 
-/* Strings: Making Anagrams
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+                        Strings: Making Anagrams
+ 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+/*
     Given two large strings, a and b which may or may not be the same length. Determine the minimum number of character  deletions required to make a and b anagrams. Any characters can be deleted from either of the strings
  
     Input: cde      Output:  4
@@ -80,6 +91,8 @@ leftRotate(arr: arr, d: 2)
  
  
 */
+
+/* My Solution O(N):
 extension Character
 {
     func unicodeScalarCodePoint() -> Int
@@ -123,6 +136,15 @@ func makeAnagram(str1: String, str2: String) -> Int
 }
 
 let amount = makeAnagram(str1: "cde", str2: "abc")
+*/
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+                        Hash Tables: Ransom Note
+ 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+
 
 
 
