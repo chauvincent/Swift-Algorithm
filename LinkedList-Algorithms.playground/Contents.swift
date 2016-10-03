@@ -5,16 +5,7 @@ import UIKit
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
                             LinkedList Class
- TODO:
-    print
-    insert at index
-    removeall
-    remove at index
-    remove last
-    remove given a node
-    reverse linked list
-    detect cycle
-    + .. more to come
+
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 public class Node<T>
@@ -30,21 +21,21 @@ public class Node<T>
     
 }
 
-public class LinkedList<Int>
+public class LinkedList<T>
 {
-    fileprivate var head: Node<Int>?
+    fileprivate var head: Node<T>?
     
     public var isEmpty: Bool {
         
         return head == nil
     }
     
-    public var getHead: Node<Int>? {
+    public var getHead: Node<T>? {
     
         return head
     }
     
-    public var getLast: Node<Int>? {
+    public var getLast: Node<T>? {
         
         if var node = head
         {
@@ -61,9 +52,9 @@ public class LinkedList<Int>
         }
     }
     
-    public func append(data: Int)
+    public func append(data: T)
     {
-        let node = Node<Int>(data: data)
+        let node = Node<T>(data: data)
         
         if let last = getLast
         {
@@ -75,9 +66,11 @@ public class LinkedList<Int>
             head = node
         }
     }
+    
     public func printList()
     {
         var node = getHead
+        
         while node != nil
         {
             print(node!.data)
@@ -85,6 +78,43 @@ public class LinkedList<Int>
         }
     }
 
+    public func insertAtIndex(value: Int, atIndex: Int)
+    {
+
+
+    }
+    
+    public func remove(node: Node<T>)
+    {
+        let next = node.next
+        let prev = node.prev
+        
+        if let prev = prev
+        {
+            prev.next = next
+        }
+        else // if delete head node
+        {
+            head = next
+        }
+        next?.prev = prev
+        node.prev = nil
+        node.next = nil
+    }
+    
+    public func removeAll()
+    {
+        
+    }
+    
+    public func removeAt(index: Int)
+    {
+        
+        
+    }
+    
+ 
+    
     
 }
 
