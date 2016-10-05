@@ -78,10 +78,34 @@ public class LinkedList<T>
         }
     }
 
-    public func insertAtIndex(value: Int, atIndex: Int)
+    public func insertAtIndex(value: T, atIndex: Int)
     {
-
-
+        var newNode = Node<T>(data: value)
+        var count = 0
+        
+        if var node = head
+        {
+            
+            while case let next? = node.next
+            {
+                
+                if count == atIndex
+                {
+                    // insert
+                }
+                
+                node = next
+                count += 1
+            }
+            // append
+            newNode.prev = node.next
+            node.next = newNode
+        }
+        else
+        {
+            head = newNode
+        }
+        
     }
     
     public func remove(node: Node<T>)
@@ -123,5 +147,5 @@ let numberList = LinkedList<Int>()
 numberList.append(data: 3)
 numberList.append(data: 4)
 numberList.append(data: 5)
-
+numberList.insertAtIndex(value: 10, atIndex: 1)
 numberList.printList()
