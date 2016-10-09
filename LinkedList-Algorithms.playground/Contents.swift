@@ -83,28 +83,32 @@ public class LinkedList<T>
         var newNode = Node<T>(data: value)
         var count = 0
         
-        if var node = head
+        var node = getHead
+        
+        while node != nil
         {
             
-            while case let next? = node.next
+            if (count == atIndex)
             {
-                
-                if count == atIndex
+
+                if node?.prev == nil
                 {
-                    // insert
+                    self.head = newNode
+                    return
                 }
-                
-                node = next
-                count += 1
+               
+                node?.prev?.next = newNode
+                node?.prev = newNode
+                newNode.next = node
+                return
             }
-            // append
-            newNode.prev = node.next
-            node.next = newNode
+            
+            node = node?.next
+            count += 1
         }
-        else
-        {
-            head = newNode
-        }
+        
+        // Out of bounds, add to end
+        self.append(data: value)
         
     }
     
