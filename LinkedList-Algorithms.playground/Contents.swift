@@ -137,7 +137,38 @@ public class LinkedList<T>
     
     public func removeAt(index: Int)
     {
+        var count = 0
+        var node = getHead
         
+        while node != nil
+        {
+
+            if index == 0
+            {
+                let next = head?.next
+                head = nil
+                self.head = next
+                return
+            }
+            
+            if count == index
+            {
+
+                var prev = node?.prev
+                var next = node?.next
+                
+                if prev == nil
+                {
+                    prev = head
+                }
+                prev?.next = next
+                next?.prev = prev
+                node?.prev = nil
+
+            }
+            count += 1
+            node = node?.next
+        }
         
     }
     
@@ -152,5 +183,5 @@ numberList.append(data: 3)
 numberList.append(data: 4)
 numberList.append(data: 5)
 numberList.insertAtIndex(value: 10, atIndex: 1)
-
+numberList.removeAt(index: 3)
 numberList.printList()
