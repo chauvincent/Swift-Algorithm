@@ -80,7 +80,7 @@ public class LinkedList<T>
 
     public func insertAtIndex(value: T, atIndex: Int)
     {
-        var newNode = Node<T>(data: value)
+        let newNode = Node<T>(data: value)
         var count = 0
         
         var node = getHead
@@ -132,7 +132,7 @@ public class LinkedList<T>
     
     public func removeAll()
     {
-        
+        head = nil
     }
     
     public func removeAt(index: Int)
@@ -152,4 +152,5 @@ numberList.append(data: 3)
 numberList.append(data: 4)
 numberList.append(data: 5)
 numberList.insertAtIndex(value: 10, atIndex: 1)
+
 numberList.printList()
