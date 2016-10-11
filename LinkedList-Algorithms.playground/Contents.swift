@@ -8,6 +8,8 @@ import UIKit
 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+
+
 public class Node<T>
 {
     var data: T
@@ -106,10 +108,8 @@ public class LinkedList<T>
             node = node?.next
             count += 1
         }
-        
         // Out of bounds, add to end
         self.append(data: value)
-        
     }
     
     public func remove(node: Node<T>)
@@ -125,6 +125,7 @@ public class LinkedList<T>
         {
             head = next
         }
+        
         next?.prev = prev
         node.prev = nil
         node.next = nil
@@ -155,12 +156,13 @@ public class LinkedList<T>
             {
 
                 var prev = node?.prev
-                var next = node?.next
+                let next = node?.next
                 
                 if prev == nil
                 {
                     prev = head
                 }
+                
                 prev?.next = next
                 next?.prev = prev
                 node?.prev = nil
@@ -169,14 +171,96 @@ public class LinkedList<T>
             count += 1
             node = node?.next
         }
+    }
+    
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+                            CTCI LinkedList Problems
+     
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+    
+    /*
+     (Unsorted)
+    Brute Force Iterative:
+            1 - 2 - 3 - 5 - 6 - 2 - 3 - 7
+      p1   /\
+      p2       /\../\../\../\../\../\../\ ...
+    Go through and call remove if same O(N^2)
+     
+     */
+    
+    public func removeDuplicatedUnsorted()
+    {
+        var node = getHead
+        var runner = getHead?.next
+        
+        while node != nil
+        {
+            while runner != nil
+            {
+                if compareData(of: node!.data as! Int, and: runner!.data as! Int)!
+                {
+                
+                }
+                
+                runner = runner?.next
+            }
+            
+        
+        
+            node = node?.next
+        }
+        
         
     }
     
- 
+    fileprivate func compareData<T: Equatable>(of value1: T, and value2:T) -> Bool?
+    {
+        
+        if value1 == value2
+        {
+            return true
+        }
+        
+        return false
+    }
+    /*
+     
+     (Sorted)
+     Iterative:   |----------|
+           1 - 2 - 3 - 3 - 3 - 5 - 6 - 7
+     p1   /\
+     p2       /\
+     
+     p1       /\
+     p2           /\
+     
+     p1           /\  /\
+     p2           /\          /\            // delete the range 
+           1 - 2 - 5 - 6 - 7
+     p1            /\  /\
+    
+     */
+    public func removeDuplicatedSorted()
+    {
+        
+    }
     
     
 }
 
+
+
+
+
+
+
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+                            Function Calls
+ 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 let numberList = LinkedList<Int>()
 numberList.append(data: 3)
@@ -184,4 +268,27 @@ numberList.append(data: 4)
 numberList.append(data: 5)
 numberList.insertAtIndex(value: 10, atIndex: 1)
 numberList.removeAt(index: 3)
+numberList.append(data: 11)
+numberList.removeAt(index: 1)
+numberList.append(data: 9)
+numberList.append(data: 11)
+numberList.append(data: 10)
+numberList.append(data: 11)
+numberList.removeAll()
+
+// Remove Duplicates
+numberList.append(data: 0)
+//numberList.append(data: 1)
+numberList.append(data: 1)
+numberList.append(data: 2)
+numberList.append(data: 2)
+numberList.append(data: 2)
+numberList.append(data: 3)
+numberList.append(data: 4)
+numberList.append(data: 5)
+numberList.removeDuplicatedUnsorted()
 numberList.printList()
+
+
+
+
