@@ -191,22 +191,22 @@ public class LinkedList<T>
     public func removeDuplicatedUnsorted()
     {
         var node = getHead
-        var runner = getHead?.next
-        
+
+        var count = 0
+       
         while node != nil
         {
+            var runner = getHead?.next
             while runner != nil
             {
                 if compareData(of: node!.data as! Int, and: runner!.data as! Int)!
                 {
-                
+                    // 3 3 4 5 6
+                    node?.next = runner?.next
+                    
                 }
-                
                 runner = runner?.next
             }
-            
-        
-        
             node = node?.next
         }
         
@@ -215,8 +215,7 @@ public class LinkedList<T>
     
     fileprivate func compareData<T: Equatable>(of value1: T, and value2:T) -> Bool?
     {
-        
-        if value1 == value2
+        if value1 as! Int == value2 as! Int
         {
             return true
         }
@@ -278,14 +277,12 @@ numberList.removeAll()
 
 // Remove Duplicates
 numberList.append(data: 0)
-//numberList.append(data: 1)
+numberList.append(data: 1)
 numberList.append(data: 1)
 numberList.append(data: 2)
 numberList.append(data: 2)
-numberList.append(data: 2)
-numberList.append(data: 3)
-numberList.append(data: 4)
-numberList.append(data: 5)
+numberList.append(data: 23)
+
 numberList.removeDuplicatedUnsorted()
 numberList.printList()
 
