@@ -72,12 +72,13 @@ public class LinkedList<T>
     public func printList()
     {
         var node = getHead
-        
+        var list = "L: "
         while node != nil
         {
-            print(node!.data)
+            list += "\(node!.data) "
             node = node?.next
         }
+        print(list)
     }
 
     public func insertAtIndex(value: T, atIndex: Int)
@@ -173,26 +174,20 @@ public class LinkedList<T>
         }
     }
     
-    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-                            CTCI LinkedList Problems
-     
-     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-    
     /*
-     (Unsorted)
-    Brute Force Iterative:
+        Remove Duplicates : (Unsorted)
+     
             1 - 2 - 3 - 5 - 6 - 2 - 3 - 7
       p1   /\
       p2       /\../\../\../\../\../\../\ ...
-    Go through and call remove if same O(N^2)
+      
+      Go through and call remove if same O(N^2)
      
      */
     
     public func removeDuplicatedUnsorted()
     {
         var node = getHead
-
-        var count = 0
        
         while node != nil
         {
@@ -201,30 +196,18 @@ public class LinkedList<T>
             {
                 if compareData(of: node!.data as! Int, and: runner!.data as! Int)!
                 {
-                    // 3 3 4 5 6
                     node?.next = runner?.next
-                    
                 }
                 runner = runner?.next
             }
             node = node?.next
         }
-        
-        
     }
     
-    fileprivate func compareData<T: Equatable>(of value1: T, and value2:T) -> Bool?
-    {
-        if value1 as! Int == value2 as! Int
-        {
-            return true
-        }
-        
-        return false
-    }
     /*
      
-     (Sorted)
+     Remove Duplicates (Sorted):
+     
      Iterative:   |----------|
            1 - 2 - 3 - 3 - 3 - 5 - 6 - 7
      p1   /\
@@ -247,7 +230,18 @@ public class LinkedList<T>
     
 }
 
-
+extension LinkedList
+{
+    fileprivate func compareData<T: Equatable>(of value1: T, and value2:T) -> Bool?
+    {
+        if value1 as! Int == value2 as! Int
+        {
+            return true
+        }
+        
+        return false
+    }
+}
 
 
 
@@ -280,6 +274,8 @@ numberList.append(data: 0)
 numberList.append(data: 1)
 numberList.append(data: 1)
 numberList.append(data: 2)
+numberList.append(data: 2)
+numberList.append(data: 23)
 numberList.append(data: 2)
 numberList.append(data: 23)
 
