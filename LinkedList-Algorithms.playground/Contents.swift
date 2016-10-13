@@ -183,6 +183,7 @@ public class LinkedList<T>
       
       Go through and call remove if same O(N^2)
      
+     Alternative SOL: Alternative Put in Hash Table O(N)
      */
     
     public func removeDuplicatedUnsorted()
@@ -221,6 +222,9 @@ public class LinkedList<T>
            1 - 2 - 5 - 6 - 7
      p1            /\  /\
     
+     
+     Alternative: O(N) 
+     Hash Table
      */
     public func removeDuplicatedSorted()
     {
