@@ -17,6 +17,7 @@ import UIKit
 */
 
 enum Suit {
+    
     case clubs
     case diamonds
     case hearts
@@ -25,20 +26,35 @@ enum Suit {
     init?(string: String) {
         
         switch string {
+        
         case "♣️" : self = .clubs
         case "♦️" : self = .diamonds
         case "♥️" : self = .hearts
         case "♠️" : self = .spades
+            
         default: return nil
+
         }
     }
 }
 
+enum Rank: Int {
+    
+    case two = 0, three, four, five, six, seven, eight, nine, ten
+    case jack
+    case queen
+    case king
+    case ace
+    
+}
+
+
 Suit.hearts.hashValue > Suit.spades.hashValue
+
 
 struct Card {
     let rank : Int
-    let suit: String
+    let suit: Suit
 }
 
 class HandChecker {
