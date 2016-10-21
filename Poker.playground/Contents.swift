@@ -16,6 +16,7 @@ import UIKit
  
 */
 
+
 enum Suit {
     
     case clubs
@@ -40,28 +41,43 @@ enum Suit {
 
 enum Rank: Int {
     
-    case two = 0, three, four, five, six, seven, eight, nine, ten
+    case two = 2, three, four, five, six, seven, eight, nine, ten
     case jack
     case queen
     case king
     case ace
     
+    init?(string: String) {
+        if let rank = Int(string), rank >= 2 && rank <= 10 {
+            self = Rank.init(rawValue: rank)!
+        } else {
+            switch string {
+            case "J":
+                self = Rank.init(rawValue: 11)!
+            case "K":
+                self = Rank.init(rawValue: 12)!
+            case "Q":
+                self = Rank.init(rawValue: 13)!
+            case "A":
+                self = Rank.init(rawValue: 14)!
+            default:
+                return nil
+            }
+        }
+    }
 }
 
-
-Suit.hearts.hashValue > Suit.spades.hashValue
-
+var rank: Rank! = Rank(string: "J")
+//Suit.hearts.hashValue > Suit.spades.hashValue
 
 struct Card {
-    let rank : Int
+    let rank : Rank
     let suit: Suit
 }
 
-class HandChecker {
-    
-}
 
-let cards = ["8♦", "3♠", "5♦", "8♣", "J♦", "3♦", "2♦"]
+
+let cards = ["8♦️", "3♠️", "5♦️", "8♣️", "J♦️", "3♦️", "2♦️"]
 
 let sorted = cards.sorted()
 
