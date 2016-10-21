@@ -16,17 +16,36 @@ import UIKit
  
 */
 
-func getBestHand(cards: [String]) -> (bestHand: [String], nameOfHand: String)
-{
+enum Suit {
+    case clubs
+    case diamonds
+    case hearts
+    case spades
     
-    
-    return (["asdf"], "Flush")
+    init?(string: String) {
+        
+        switch string {
+        case "♣️" : self = .clubs
+        case "♦️" : self = .diamonds
+        case "♥️" : self = .hearts
+        case "♠️" : self = .spades
+        default: return nil
+        }
+    }
 }
 
+Suit.hearts.hashValue > Suit.spades.hashValue
 
+struct Card {
+    let rank : Int
+    let suit: String
+}
+
+class HandChecker {
+    
+}
 
 let cards = ["8♦", "3♠", "5♦", "8♣", "J♦", "3♦", "2♦"]
 
 let sorted = cards.sorted()
 
-getBestHand(cards: cards);
