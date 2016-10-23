@@ -18,29 +18,23 @@ import UIKit
 
 
 enum Suit {
-    
     case clubs
     case diamonds
     case hearts
     case spades
     
     init?(string: String) {
-        
         switch string {
-        
         case "♣️" : self = .clubs
         case "♦️" : self = .diamonds
         case "♥️" : self = .hearts
         case "♠️" : self = .spades
-            
         default: return nil
-
         }
     }
 }
 
 enum Rank: Int {
-    
     // Ranked in ascending order
     case two = 2, three, four, five, six, seven, eight, nine, ten
     case jack
@@ -49,7 +43,6 @@ enum Rank: Int {
     case ace
     
     init?(string: String) {
-    
         if let rank = Int(string), rank >= 2 && rank <= 10 {
             self = Rank.init(rawValue: rank)!
         } else {
@@ -74,9 +67,7 @@ struct Card {
     let suit: Suit
 }
 
-
 extension Array {
-    
     // Convert string array of card rank and suit to Cards array
     func toCardsArray() -> [Card]? {
         var cards: [Card] = []
@@ -90,9 +81,34 @@ extension Array {
         }
         return cards
     }
-    
 }
 
+//
+//class Hand {
+//    var cards: [Card]!
+//    var handType: String?
+//    
+//    init(cardStringArr: [String]) {
+//        self.cards = cardStringArr.sorted().toCardsArray()
+//    }
+//}
+
+//struct Foo  {
+//    var name:String
+//}
+
+protocol TargetType {}
+extension Array: TargetType {}
+
+extension Collection where Self:TargetType, Iterator.Element == Card {
+//    func byName() -> [Foo] { return sorted { l, r in l.name < r.name } }
+}
+//
+//let foos:[Foo] = ["c", "b", "a"].map { s in Foo(name: s) }
+//print(foos.byName())
+
+
+
 let cards = ["8♦️", "3♠️", "5♦️", "8♣️", "J♦️", "3♦️", "2♦️"]
-cards.toCardsArray()
+let allCards = cards.toCardsArray()
 
