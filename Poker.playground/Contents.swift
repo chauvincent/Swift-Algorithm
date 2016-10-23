@@ -87,12 +87,17 @@ protocol TargetType {}
 extension Array: TargetType {}
 
 extension Collection where Self:TargetType, Iterator.Element == Card {
-    func sortCardByAscending() -> [Card] { return sorted { l, r in l.rank.rawValue < r.rank.rawValue } }
-    func sortCardByDescending() -> [Card] { return sorted { l, r in l.rank.rawValue > r.rank.rawValue } }
+    func sortCardByRankAscending() -> [Card] { return sorted { l, r in l.rank.rawValue < r.rank.rawValue } }
+    func sortCardByRankDescending() -> [Card] { return sorted { l, r in l.rank.rawValue > r.rank.rawValue } }
+    func sortCardBySuitAsscending() -> [Card] { return sorted { l, r in l.suit.hashValue < r.suit.hashValue } }
+    func sortCardBySuitDescending() -> [Card] { return sorted { l, r in l.suit.hashValue > r.suit.hashValue } }
+}
+
+func getBestHand(cardString: [String])
+{
+    
 }
 
 
-
 let cards = ["8♦️", "3♠️", "5♦️", "8♣️", "J♦️", "3♦️", "2♦️"]
-let allCards = cards.toCardsArray()
-
+getBestHand(cardString: cards)
