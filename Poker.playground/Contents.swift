@@ -41,6 +41,7 @@ enum Suit {
 
 enum Rank: Int {
     
+    // Ranked in ascending order
     case two = 2, three, four, five, six, seven, eight, nine, ten
     case jack
     case queen
@@ -48,6 +49,7 @@ enum Rank: Int {
     case ace
     
     init?(string: String) {
+    
         if let rank = Int(string), rank >= 2 && rank <= 10 {
             self = Rank.init(rawValue: rank)!
         } else {
@@ -67,17 +69,30 @@ enum Rank: Int {
     }
 }
 
-var rank: Rank! = Rank(string: "J")
-//Suit.hearts.hashValue > Suit.spades.hashValue
-
 struct Card {
     let rank : Rank
     let suit: Suit
 }
 
 
+extension Array {
+    
+    // Convert string array of card rank and suit to Cards array
+    func toCardsArray() -> [Card]? {
+        var cards: [Card] = []
+        for element in self {
+            if element is String {
+                let characters = String(describing: element).characters.map { String($0) }
+                guard let rank = Rank(string: characters[0]) else { return nil }
+                guard let suit = Suit(string: characters[1]) else { return nil }
+                cards.append(Card(rank: rank, suit: suit))
+            }
+        }
+        return cards
+    }
+    
+}
 
 let cards = ["8♦️", "3♠️", "5♦️", "8♣️", "J♦️", "3♦️", "2♦️"]
-
-let sorted = cards.sorted()
+cards.toCardsArray()
 
