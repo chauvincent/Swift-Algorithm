@@ -83,29 +83,13 @@ extension Array {
     }
 }
 
-//
-//class Hand {
-//    var cards: [Card]!
-//    var handType: String?
-//    
-//    init(cardStringArr: [String]) {
-//        self.cards = cardStringArr.sorted().toCardsArray()
-//    }
-//}
-
-//struct Foo  {
-//    var name:String
-//}
-
 protocol TargetType {}
 extension Array: TargetType {}
 
 extension Collection where Self:TargetType, Iterator.Element == Card {
-//    func byName() -> [Foo] { return sorted { l, r in l.name < r.name } }
+    func sortCardByAscending() -> [Card] { return sorted { l, r in l.rank.rawValue < r.rank.rawValue } }
+    func sortCardByDescending() -> [Card] { return sorted { l, r in l.rank.rawValue > r.rank.rawValue } }
 }
-//
-//let foos:[Foo] = ["c", "b", "a"].map { s in Foo(name: s) }
-//print(foos.byName())
 
 
 
