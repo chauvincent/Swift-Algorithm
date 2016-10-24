@@ -43,9 +43,12 @@ enum Rank: Int {
     case ace
     
     init?(string: String) {
+       // print(string)
         if let rank = Int(string), rank >= 2 && rank <= 10 {
+      //      print(string)
             self = Rank.init(rawValue: rank)!
         } else {
+      //      print(string)
             switch string {
             case "J":
                 self = Rank.init(rawValue: 11)!
@@ -71,11 +74,14 @@ extension Array {
     // Convert string array of card rank and suit to Cards array
     func toCardsArray() -> [Card]? {
         var cards: [Card] = []
+        let allowedRank = NSCharacterSet(charactersIn: "1234567890AJKQ")
+        let allowedSuit = NSCharacterSet(charactersIn: "♥️♣️♦️♠️")
         for element in self {
             if element is String {
-                let characters = String(describing: element).characters.map { String($0) }
-                guard let rank = Rank(string: characters[0]) else { return nil }
-                guard let suit = Suit(string: characters[1]) else { return nil }
+                let rankChar = String(describing: element).components(separatedBy: allowedRank.inverted).first
+                let suitChar = String(describing: element).components(separatedBy: allowedSuit.inverted).last
+                guard let rank = Rank(string: rankChar!) else { return nil }
+                guard let suit = Suit(string: suitChar!) else { return nil }
                 cards.append(Card(rank: rank, suit: suit))
             }
         }
@@ -87,17 +93,59 @@ protocol TargetType {}
 extension Array: TargetType {}
 
 extension Collection where Self:TargetType, Iterator.Element == Card {
-    func sortCardByRankAscending() -> [Card] { return sorted { l, r in l.rank.rawValue < r.rank.rawValue } }
-    func sortCardByRankDescending() -> [Card] { return sorted { l, r in l.rank.rawValue > r.rank.rawValue } }
-    func sortCardBySuitAsscending() -> [Card] { return sorted { l, r in l.suit.hashValue < r.suit.hashValue } }
-    func sortCardBySuitDescending() -> [Card] { return sorted { l, r in l.suit.hashValue > r.suit.hashValue } }
+    func sortCardsByRankAscending() -> [Card] { return sorted { l, r in l.rank.rawValue < r.rank.rawValue } }
+    func sortCardsByRankDescending() -> [Card] { return sorted { l, r in l.rank.rawValue > r.rank.rawValue } }
+    func sortCardsBySuitAscending() -> [Card] { return sorted { l, r in l.suit.hashValue < r.suit.hashValue } }
+    func sortCardsBySuitDescending() -> [Card] { return sorted { l, r in l.suit.hashValue > r.suit.hashValue } }
 }
 
-func getBestHand(cardString: [String])
-{
+// Straight Flush
+// Four of a kind
+// Full House
+// Flush
+// Straight
+// Three of a kind
+// Two pair
+// One pair
+// High Card
+
+class Hand {
+    var cards: [Card]!
+    var handName: String?
+    var bestCards: [Card]?
+    
+    lazy var isStraightFlush: Bool = {
+        var sortedCards = self.cards.sortCardsBySuitDescending()
+        
+        return false;
+    }()
+    
+    
+    init(cards: [Card]) {
+        self.cards = cards
+       // print(isStraightFlush)
+    }
     
 }
 
+func getBestHand(cardString: [String]) {
+    
+    guard let cards = cardString.toCardsArray() else { return }
+    
+    print(cards)
+    let hand = Hand(cards: cards)
+    
+    //print(hand.cards)
+    
+}
 
-let cards = ["8♦️", "3♠️", "5♦️", "8♣️", "J♦️", "3♦️", "2♦️"]
-getBestHand(cardString: cards)
+let straightFlush = ["A♠️", "K♠️", "Q♠️", "10♠️", "J♠️", "2♠️", "3♦️"]
+//let cards = ["8♦️", "3♠️", "5♦️", "8♣️", "J♦️", "3♦️", "2♦️"]
+
+getBestHand(cardString: straightFlush)
+
+
+
+
+
+
